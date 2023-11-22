@@ -1,0 +1,115 @@
+# .NET build files
+*.dll
+*.exe
+*.pdb
+*.dll.config
+
+# .NET Core build files
+*.csproj
+*.nuget.props
+*.nuget.targets
+
+# Visual Studio files
+.vs/
+*.vscode/
+*.sln
+*.suo
+*.user
+*.userprefs
+*.vspscc
+*.vssscc
+*.vssettings
+*.vsmacros
+*.orig
+
+# Test Results
+TestResults/
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+*.paket.*
+*.paket.lock
+paket-files/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Build directories
+*_i.c/
+*_p.c/
+*_i.h/
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Roslyn cache directories
+*.ide/
+*.ide-sh/
+*.ide-w/
+*.ipch/
+*.opendb/
+*.sln.docstates
+
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+# StyleCop
+StyleCopReport.xml
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject file
+**/*.DocProject
+
+# TeamCity
+_TeamCity*
+
+# Xamarin-specific
+*.apk
+*.ap_
+*.aab
+*.aab.zip
+*.ipa
+*.msi
+*.nupkg
+*.p12
+*.pfx
+*.vsix
