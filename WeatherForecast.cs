@@ -10,6 +10,3 @@ public class WeatherForecast
 
     public string? Summary { get; set; }
 }
-
-// kamrannaseer7654321
-// Kamran#500
