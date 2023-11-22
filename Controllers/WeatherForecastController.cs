@@ -29,4 +29,10 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+    [HttpGet]
+    public string GetUserName()
+    {
+        return "Kamran Moazim";
+    }
 }
