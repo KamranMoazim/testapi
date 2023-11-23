@@ -16,10 +16,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// app.Listen("http://0.0.0.0:9090");  // Set the desired port
+
+app.MapGet("/", () => "Hello World!");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.Run("http://0.0.0.0:9090");
