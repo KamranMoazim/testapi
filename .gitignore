@@ -5,14 +5,12 @@
 *.dll.config
 
 # .NET Core build files
-*.csproj
 *.nuget.props
 *.nuget.targets
 
 # Visual Studio files
 .vs/
 *.vscode/
-*.sln
 *.suo
 *.user
 *.userprefs

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testapi", "testapi.csproj", "{A9BB1E79-8111-4C24-A9E2-0E3144064F03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9BB1E79-8111-4C24-A9E2-0E3144064F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BB1E79-8111-4C24-A9E2-0E3144064F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BB1E79-8111-4C24-A9E2-0E3144064F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BB1E79-8111-4C24-A9E2-0E3144064F03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB4C64DD-10BB-4F7C-85E5-5BA1252674DE}
+	EndGlobalSection
+EndGlobal
