@@ -1,6 +1,9 @@
 name: CI-build-and-push-image-for-dotnetapp
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
