@@ -36,7 +36,7 @@ jobs:
           registry: ${{ secrets.AWS_ECR_REGISTRY }}
           region: ${{ secrets.AWS_REGION }}
           mask-password: true
-          registry-type: normal
+          registry-type: public
           skip-logout: false
 
       - name: Build and push
