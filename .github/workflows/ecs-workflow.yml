@@ -29,13 +29,10 @@ jobs:
           ecs_service_info=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service)
           echo "ECS Service Info: $ecs_service_info"
           ecs_service_ip=$(echo "$ecs_service_info" | jq -r '.services[0].networkBindings[0].bindIP')
-          echo "ECS Service IP: $ecs_service_ip"
-          echo "ecs-service-ip=${ecs_service_ip}" >> $GITHUB_STATE
-          echo "ECS Service IP: $ecs_service_ip"
-          # Get ECS_CONTAINER_METADATA_URI
-          ecs_container_metadata_uri=$(curl -s $ECS_CONTAINER_METADATA_URI)
-          echo "ECS_CONTAINER_METADATA_URI: $ecs_container_metadata_uri"
-          echo "ecs-container-metadata-uri=${ecs_container_metadata_uri}" >> $GITHUB_STATE
+          # Obtain public IP using an external service (example: ifconfig.co)
+          ecs_service_public_ip=$(curl -s ifconfig.co)
+          echo "ECS Service Public IP: $ecs_service_public_ip"
+          echo "ecs-service-public-ip=${ecs_service_public_ip}" >> $GITHUB_STATE
 
       # - name: Download task definition
       #   run: |
