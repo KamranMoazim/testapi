@@ -23,16 +23,15 @@ jobs:
 
       - name: Get ECS Service IP
         run: |
+          ecs_service_info=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service)
+          task_id=$(echo "$ecs_service_info" | jq -r '.services[0].deployments[0].tasks[0]')
+          echo "Task ID: $task_id"
+          ecs_task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks $task_id)
+          ecs_task_ip=$(echo "$ecs_task_info" | jq -r '.tasks[0].containers[0].networkInterfaces[0].privateIpv4Address')
+          echo "ECS Task IP: $ecs_task_ip"
           ecs_service_ip=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service --query 'services[0].networkBindings[0].bindIP' --output text)
           echo "ECS Service IP: $ecs_service_ip"
-          echo "::set-output name=ecs-service-ip::$ecs_service_ip"
-          ecs_service_info=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service)
-          echo "ECS Service Info: $ecs_service_info"
-          ecs_service_ip=$(echo "$ecs_service_info" | jq -r '.services[0].networkBindings[0].bindIP')
-          # Obtain public IP using an external service (example: ifconfig.co)
-          ecs_service_public_ip=$(curl -s ifconfig.co)
-          echo "ECS Service Public IP: $ecs_service_public_ip"
-          echo "ecs-service-public-ip=${ecs_service_public_ip}" >> $GITHUB_STATE
+
 
       # - name: Download task definition
       #   run: |
