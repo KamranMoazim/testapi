@@ -25,7 +25,12 @@ app.MapControllers();
 
 // app.Listen("http://0.0.0.0:9090");  // Set the desired port
 
-// app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Hello World!");
 
 // app.Run();
 app.Run("http://0.0.0.0:9090");
+
+
+// AWS_REGISTRY_URL
+// AWS_ACCESS_KEY_ID
+// AWS_SECRET_ACCESS_KEY
