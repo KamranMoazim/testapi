@@ -29,7 +29,7 @@ jobs:
           echo "Task ID: $task_id"
           task_definition_info=$(aws ecs describe-task-definition --task-definition $task_id)
           echo "Task Definition Info: $task_definition_info"
-          task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks $task_definition_info.taskDefinition.taskDefinitionArn)
+          task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks arn:aws:ecs:us-east-1:***:task-definition/dotnettestapitask:4)
           echo "Task Info: $task_info"
 
 
