@@ -27,5 +27,5 @@ app.MapControllers();
 
 // app.MapGet("/", () => "Hello World!");
 
-app.Run();
-// app.Run("http://0.0.0.0:9090");
+// app.Run();
+app.Run("http://0.0.0.0:9090");
