@@ -34,7 +34,8 @@ public class WeatherForecastController : ControllerBase
     [HttpGet("GetUserName")]
     public string GetUserName()
     {
-        return "Kamran Moazim";
+      // http://3.87.143.70:9090/WeatherForecast/GetUserName
+        return "Updated Name - Kamran Moazim";
     }
 }
 
