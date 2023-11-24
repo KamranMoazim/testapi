@@ -23,16 +23,23 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ secrets.ECS_FAMILY }} --query taskDefinition > task-definition.json
 
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: dotnettestapirepo
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry: ${{ secrets.AWS_ECR_REGISTRY }}
+          region: ${{ secrets.AWS_REGION }}
+          mask-password: true
+          registry-type: public
+          skip-logout: false
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.AWS_ECR_REGISTRY }}:latest, ${{ secrets.AWS_ECR_REGISTRY }}:${{ github.run_number }}
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
