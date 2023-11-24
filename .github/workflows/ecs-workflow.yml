@@ -27,11 +27,8 @@ jobs:
           echo "ECS ecs_service_info: $ecs_service_info"
           task_id=$(echo "$ecs_service_info" | jq -r '.services[0].deployments[0].taskDefinition')
           echo "Task ID: $task_id"
-          # ecs_task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks $task_id)
-          # ecs_task_ip=$(echo "$ecs_task_info" | jq -r '.tasks[0].containers[0].networkInterfaces[0].privateIpv4Address')
-          # echo "ECS Task IP: $ecs_task_ip"
-          # ecs_service_ip=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service --query 'services[0].networkBindings[0].bindIP' --output text)
-          # echo "ECS Service IP: $ecs_service_ip"
+          task_definition_info=$(aws ecs describe-task-definition --task-definition $task_id)
+          echo "Task Definition Info: $task_definition_info"
 
 
       # - name: Download task definition
