@@ -25,7 +25,7 @@ jobs:
         run: |
           ecs_service_info=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service)
           echo "ECS ecs_service_info: $ecs_service_info"
-          task_id=$(echo "$ecs_service_info" | jq -r '.services[0].deployments[0].tasks[0]')
+          task_id=$(echo "$ecs_service_info" | jq -r '.services[0].deployments[0].taskDefinition')
           echo "Task ID: $task_id"
           # ecs_task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks $task_id)
           # ecs_task_ip=$(echo "$ecs_task_info" | jq -r '.tasks[0].containers[0].networkInterfaces[0].privateIpv4Address')
