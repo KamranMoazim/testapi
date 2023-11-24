@@ -21,9 +21,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Download task definition
-        run: |
-          aws ecs describe-task-definition --task-definition ${{ secrets.ECS_FAMILY }} --query taskDefinition > task-definition.json
+      # - name: Download task definition
+      #   run: |
+      #     aws ecs describe-task-definition --task-definition ${{ secrets.ECS_FAMILY }} --query taskDefinition > task-definition.json
 
       # - name: Log in to Amazon ECR
       #   id: login-ecr
@@ -68,23 +68,9 @@ jobs:
 
       - name: Update IP in GitHub repository
         run: echo "${{ steps.ecs-service-ip.outputs.ecs-service-ip }}" > updated-ip.txt
-          
-      # - name: Commit and push changes
-      #   run: |
-      #     git config --global user.email "github-actions@github.com"
-      #     git config --global user.name "GitHub Actions"
-      #     git add updated-ip.txt
-      #     git commit -m "Update ECS service IP"
-      #     git push https://github.com/KamranMoazim/testapi HEAD:master
-
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      
 
       - name: Update IP in Repository
         run: |
-          echo "Public IP: ${{ steps.deploy.outputs.public-ip }}" > updated-ip.txt
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           git add .
@@ -92,11 +78,3 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-      # - name: Update resources
-      #   uses: test-room-7/action-update-file@v1
-      #   with:
-      #       file-path: ./ip.txt
-      #       commit-msg: Update resources
-      #       github-token: ${{ secrets.GITHUB_TOKEN }}
