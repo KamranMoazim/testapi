@@ -87,7 +87,7 @@ jobs:
           echo "Public IP: ${{ steps.deploy.outputs.public-ip }}" > updated-ip.txt
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add updated-ip.txt
+          git add .
           git commit -m "Update ECS service IP"
           git push
         env:
