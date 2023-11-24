@@ -3,6 +3,9 @@ name: CI-build-push-update-ecs
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -77,6 +80,7 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      
 
       - name: Update IP in Repository
         run: |
@@ -90,9 +94,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      - name: Update resources
-        uses: test-room-7/action-update-file@v1
-        with:
-            file-path: ./ip.txt
-            commit-msg: Update resources
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Update resources
+      #   uses: test-room-7/action-update-file@v1
+      #   with:
+      #       file-path: ./ip.txt
+      #       commit-msg: Update resources
+      #       github-token: ${{ secrets.GITHUB_TOKEN }}
