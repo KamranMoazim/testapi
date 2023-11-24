@@ -37,6 +37,20 @@ public class WeatherForecastController : ControllerBase
       // http://3.87.143.70:9090/WeatherForecast/GetUserName
         return "Updated Name - Kamran Moazim";
     }
+
+    [HttpGet("Get")]
+    public string GetTT()
+    {
+      /*
+      
+  push:
+    branches:
+      - main
+
+      */
+      // http://3.87.143.70:9090/WeatherForecast/GetUserName
+        return "  push: branches: - main";
+    }
 }
 
 
