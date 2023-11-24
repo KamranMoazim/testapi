@@ -77,6 +77,19 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
+      - name: Update IP in Repository
+        run: |
+          echo "Public IP: ${{ steps.deploy.outputs.public-ip }}" > updated-ip.txt
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add updated-ip.txt
+          git commit -m "Update ECS service IP"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
       - name: Update resources
         uses: test-room-7/action-update-file@v1
         with:
