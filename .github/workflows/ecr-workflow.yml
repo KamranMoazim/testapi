@@ -33,6 +33,8 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           mask-password: true
+          registry-type: public
+          skip-logout: false
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
