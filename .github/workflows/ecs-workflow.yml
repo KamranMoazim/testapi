@@ -72,4 +72,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add updated-ip.txt
           git commit -m "Update ECS service IP"
-          git push
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/KamranMoazim/testapi.git HEAD:master
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
