@@ -45,7 +45,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.AWS_ECR_REGISTRY }}/dockerfordotnetapi:latest, ${{ secrets.AWS_ECR_REGISTRY }}/dockerfordotnetapi:${{ github.run_number }}
+          tags: ${{ secrets.AWS_ECR_REGISTRY }}:latest, ${{ secrets.AWS_ECR_REGISTRY }}:${{ github.run_number }}
 
       - name: Log out of Amazon ECR
         if: always()
