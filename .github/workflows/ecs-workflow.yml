@@ -26,7 +26,12 @@ jobs:
           ecs_service_ip=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service --query 'services[0].networkBindings[0].bindIP' --output text)
           echo "ECS Service IP: $ecs_service_ip"
           echo "::set-output name=ecs-service-ip::$ecs_service_ip"
-        
+          ecs_service_info=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service)
+          echo "ECS Service Info: $ecs_service_info"
+          ecs_service_ip=$(echo "$ecs_service_info" | jq -r '.services[0].networkBindings[0].bindIP')
+          echo "ECS Service IP: $ecs_service_ip"
+          echo "ecs-service-ip=${ecs_service_ip}" >> $GITHUB_STATE
+          echo "ECS Service IP: $ecs_service_ip"
 
       # - name: Download task definition
       #   run: |
