@@ -39,16 +39,28 @@ app.Run("http://0.0.0.0:9090");
 /*
 
 
-      - name: Update ECS Task Definition
-        run: |
-          aws ecs register-task-definition --family ${{ secrets.ECS_FAMILY }} --container-definitions "$(cat ./container-definition.json)"
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
-      - name: Update ECS Service
-        run: |
-          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER }} --service ${{ secrets.ECS_SERVICE }} --task-definition ${{ secrets.ECS_FAMILY }}:latest
 
-      - name: Log out of Amazon ECR
-        if: always()
-        run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - README.md
+      - .vscode/**
+      - .gitignore
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - README.md
+      - .vscode/**
+      - .gitignore
+      
 
 */
