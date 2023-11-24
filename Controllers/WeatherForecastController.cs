@@ -58,7 +58,11 @@ public class WeatherForecastController : ControllerBase
 // -- DOCKERHUB_TOKEN --- dckr_pat_qkh_8w5GMXIzsAxSBI2Msa0PUuQ
 // Kamran#500
 
+// https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-using-a-public-docker-image-from-docker-hub
 /*
+
+
+
 name: CI-build-push-update-ecs
 
 on:
