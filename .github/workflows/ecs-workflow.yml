@@ -26,6 +26,9 @@ jobs:
           ecs_task_info=$(aws ecs list-tasks --cluster fypCluster --service-name my-dotnetapi-service)
           task_arn=$(echo "$ecs_task_info" | jq -r '.taskArns[0]')
           echo "ECS Task ARN: $task_arn"
+          task_details=$(aws ecs describe-tasks --cluster fypCluster --tasks "$task_arn")
+          network_interface_id=$(echo "$task_details" | jq -r '.tasks[0].attachments[0].details[] | select(.name == "networkInterfaceId") | .value')
+          echo "networkInterfaceId: $network_interface_id"
 
 
       # - name: Download task definition
