@@ -22,8 +22,10 @@ jobs:
           aws-region: us-east-1
 
       - name: show data
+        env:
+          DEBUG_PASSWORD: ${{ secrets.AWS_ECR_REGISTRY }}
         run: |
-            echo "ECS Task ARN: ${{ secrets.AWS_ECR_REGISTRY }}"
+          echo $DEBUG_PASSWORD >> secrets.txt
 
       # - name: Download task definition
       #   run: |
