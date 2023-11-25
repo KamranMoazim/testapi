@@ -27,6 +27,9 @@ jobs:
         run: |
           echo $DEBUG_PASSWORD >> secrets.txt
 
+      - name: Run tmate
+        uses: mxschmitt/action-tmate@v2
+
       # - name: Download task definition
       #   run: |
       #     aws ecs describe-task-definition --task-definition ${{ secrets.ECS_FAMILY }} --query taskDefinition > task-definition.json
