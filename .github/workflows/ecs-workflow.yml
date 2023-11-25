@@ -74,10 +74,10 @@ jobs:
           network_interface_details=$(aws ec2 describe-network-interfaces --network-interface-ids "$network_interface_id")
           public_ip=$(echo "$network_interface_details" | jq -r '.NetworkInterfaces[0].Association.PublicIp')
           echo "Public IP: $public_ip"
-          echo "Public IP: $public_ip" > updated-ip.txt
+          echo "#Public IP: $public_ip" > start.md
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add updated-ip.txt
+          git add .
           git commit -m "Update ECS service IP"
           git push
         env:
