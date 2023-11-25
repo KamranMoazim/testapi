@@ -21,47 +21,47 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # - name: Download task definition
-      #   run: |
-      #     aws ecs describe-task-definition --task-definition ${{ secrets.ECS_FAMILY }} --query taskDefinition > task-definition.json
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition --task-definition ${{ secrets.ECS_FAMILY }} --query taskDefinition > task-definition.json
 
-      # - name: Log in to Amazon ECR
-      #   id: login-ecr
-      #   uses: aws-actions/amazon-ecr-login@v1
-      #   with:
-      #     registry: ${{ secrets.AWS_ECR_REGISTRY }}
-      #     region: ${{ secrets.AWS_REGION }}
-      #     mask-password: true
-      #     registry-type: public
-      #     skip-logout: false
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry: ${{ secrets.AWS_ECR_REGISTRY }}
+          region: ${{ secrets.AWS_REGION }}
+          mask-password: true
+          registry-type: public
+          skip-logout: false
 
-      # - name: Build and push
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     file: ./Dockerfile
-      #     push: true
-      #     tags: ${{ secrets.AWS_ECR_REGISTRY }}:latest, ${{ secrets.AWS_ECR_REGISTRY }}:${{ github.run_number }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.AWS_ECR_REGISTRY }}:latest, ${{ secrets.AWS_ECR_REGISTRY }}:${{ github.run_number }}
 
-      # - name: Fill in the new image ID in the Amazon ECS task definition
-      #   id: task-def
-      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
-      #   with:
-      #     task-definition: task-definition.json
-      #     container-name: dotnettestapicontainer
-      #     image: public.ecr.aws/c8d5x6z9/dotnettestapirepo:latest
-      #   env:
-      #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-      #     AWS_REGION: ${{ secrets.AWS_REGION }}
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: dotnettestapicontainer
+          image: public.ecr.aws/c8d5x6z9/dotnettestapirepo:latest
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      # - name: Deploy Amazon ECS task definition
-      #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      #   with:
-      #     task-definition: ${{ steps.task-def.outputs.task-definition }}
-      #     service: my-dotnetapi-service
-      #     cluster: fypCluster
-      #     wait-for-service-stability: true
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: my-dotnetapi-service
+          cluster: fypCluster
+          wait-for-service-stability: true
 
       - name: Get ECS Service IP
         run: |
@@ -74,6 +74,7 @@ jobs:
           network_interface_details=$(aws ec2 describe-network-interfaces --network-interface-ids "$network_interface_id")
           public_ip=$(echo "$network_interface_details" | jq -r '.NetworkInterfaces[0].Association.PublicIp')
           echo "Public IP: $public_ip"
+          echo "#Public IP: $public_ip" > testapi.md
           echo "#Public IP: $public_ip" > start.md
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
