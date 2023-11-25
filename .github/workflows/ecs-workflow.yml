@@ -23,15 +23,9 @@ jobs:
 
       - name: Get ECS Service IP
         run: |
-          ecs_service_info=$(aws ecs describe-services --cluster fypCluster --services my-dotnetapi-service)
-          echo "ECS ecs_service_info: $ecs_service_info"
-          task_id=$(echo "$ecs_service_info" | jq -r '.services[0].deployments[0].taskDefinition')
-          echo "Task ID: $task_id"
-          # task_definition_info=$(aws ecs describe-task-definition --task-definition $task_id)
-          # echo "Task Definition Info: $task_definition_info"
-          task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks arn:aws:ecs:us-east-1:893103861086:task-definition/dotnettestapitask:4)
-          # task_info=$(aws ecs describe-tasks --cluster fypCluster --tasks $task_id)
-          echo "Task Info: $task_info"
+          ecs_task_info=$(aws ecs list-tasks --cluster fypCluster --service-name my-dotnetapi-service)
+          task_arn=$(echo "$ecs_task_info" | jq -r '.taskArns[0]')
+          echo "ECS Task ARN: $task_arn"
 
 
       # - name: Download task definition
