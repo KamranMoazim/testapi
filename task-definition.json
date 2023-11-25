@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:893103861086:task-definition/dotnettestapitask:4",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:893103861086:task-definition/dotnettestapitask:5",
     "containerDefinitions": [
         {
             "name": "dotnettestapicontainer",
@@ -33,7 +33,7 @@
     "taskRoleArn": "arn:aws:iam::893103861086:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::893103861086:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 4,
+    "revision": 5,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -73,6 +73,6 @@
     ],
     "cpu": "1024",
     "memory": "3072",
-    "registeredAt": "2023-11-24T17:40:35.879000+00:00",
+    "registeredAt": "2023-11-25T06:16:43.945000+00:00",
     "registeredBy": "arn:aws:iam::893103861086:user/ubuntu-amin"
 }
